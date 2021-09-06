@@ -25,9 +25,9 @@ public class Singleton {
                 //懒汉-双检索
                 //System.out.println(lazySingletonDoubleCheck.getInstance());
                 //静态内部类
-                //System.out.println(staticInnerSingleton.getInstance());
+                System.out.println(staticInnerSingleton.getInstance());
                 //枚举
-                System.out.println(EnumSingleton.instance);
+                //System.out.println(EnumSingleton.instance);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
