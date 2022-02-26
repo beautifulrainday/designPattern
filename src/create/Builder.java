@@ -6,7 +6,10 @@ package create;
 public class Builder {
 
     public static void main(String[] args) {
-        Director.create(new CarBuilder());
+        Goods goods = Director.create(new CarBuilder());
+        Goods goods1 = Director.create(new CarBuilder());
+        System.out.println("goods::" + goods);
+        System.out.println("goods1::" + goods1);
         Director.create(new BicycleBuilder());
     }
 }
