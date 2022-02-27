@@ -33,6 +33,10 @@ class OriginObj implements OriginObjInterface {
     }
 }
 
+class Decorator2 extends OriginObj{
+
+}
+
 /**
  * 装饰对象抽象
  */
