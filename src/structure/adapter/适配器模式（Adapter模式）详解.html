@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://c.biancheng.net/view/1361.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./适配器模式（Adapter模式）详解_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.73">
+<link href="./适配器模式（Adapter模式）详解_files/common.css" rel="stylesheet">
+<title>适配器模式（Adapter模式）详解</title>
+<meta name="description" content="在现实生活中，经常出现两个对象因接口不兼容而不能在一起工作的实例，这时需要第三者进行适配。例如，讲中文的人同讲英文的人对话时需要一个翻译，用直流电的笔记本电脑接交">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+<ul id="product-type" class="left">
+<li>
+<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+</li>
+<li class="active">
+<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+</li>
+<li>
+<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+</li>
+<li>
+<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+</li>
+<li>
+<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+</li>
+</ul>
+</div>
+<div id="header" class="clearfix">
+<a id="logo" class="left" href="http://c.biancheng.net/">
+<img height="26" src="./适配器模式（Adapter模式）详解_files/logo.png" alt="C语言中文网">
+</a>
+<ul id="nav-main" class="hover-none left clearfix">
+<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+</ul>
+<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+<div id="sidebar" class="toggle-target">
+<div id="contents">
+<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/design_pattern/">设计模式</a></dt>
+<dd>
+<span class="channel-num">1</span>
+<a href="http://c.biancheng.net/view/1317.html">软件设计模式概述</a>
+</dd>
+<dd>
+<span class="channel-num">2</span>
+<a href="http://c.biancheng.net/view/1320.html">GoF 的 23 种设计模式</a>
+</dd>
+<dd>
+<span class="channel-num">3</span>
+<a href="http://c.biancheng.net/view/8373.html">UML统一建模语言</a>
+</dd>
+<dd>
+<span class="channel-num">4</span>
+<a href="http://c.biancheng.net/view/8374.html">UML类图及类图之间的关系</a>
+</dd>
+<dd>
+<span class="channel-num">5</span>
+<a href="http://c.biancheng.net/view/8375.html">类关系记忆技巧</a>
+</dd>
+<dd>
+<span class="channel-num">6</span>
+<a href="http://c.biancheng.net/view/1405.html">UMLet的使用与类图的设计</a>
+</dd>
+<dd>
+<span class="channel-num">7</span>
+<a href="http://c.biancheng.net/view/8465.html">优秀设计的特征</a>
+</dd>
+<dd>
+<span class="channel-num">8</span>
+<a href="http://c.biancheng.net/view/8507.html">如何正确使用设计模式</a>
+</dd>
+<dd>
+<span class="channel-num">9</span>
+<a href="http://c.biancheng.net/view/1322.html">开闭原则</a>
+</dd>
+<dd>
+<span class="channel-num">10</span>
+<a href="http://c.biancheng.net/view/1324.html">里氏替换原则</a>
+</dd>
+<dd>
+<span class="channel-num">11</span>
+<a href="http://c.biancheng.net/view/1326.html">依赖倒置原则</a>
+</dd>
+<dd>
+<span class="channel-num">12</span>
+<a href="http://c.biancheng.net/view/1327.html">单一职责原则</a>
+</dd>
+<dd>
+<span class="channel-num">13</span>
+<a href="http://c.biancheng.net/view/1330.html">接口隔离原则</a>
+</dd>
+<dd>
+<span class="channel-num">14</span>
+<a href="http://c.biancheng.net/view/1331.html">迪米特法则</a>
+</dd>
+<dd>
+<span class="channel-num">15</span>
+<a href="http://c.biancheng.net/view/1333.html">合成复用原则</a>
+</dd>
+<dd>
+<span class="channel-num">16</span>
+<a href="http://c.biancheng.net/view/8508.html">一句话总结软件设计七大原则</a>
+</dd>
+<dd>
+<span class="channel-num">17</span>
+<a href="http://c.biancheng.net/view/1335.html">创建型模式的特点和分类</a>
+</dd>
+<dd>
+<span class="channel-num">18</span>
+<a href="http://c.biancheng.net/view/1338.html">单例模式</a>
+</dd>
+<dd>
+<span class="channel-num">19</span>
+<a href="http://c.biancheng.net/view/1343.html">原型模式</a>
+</dd>
+<dd>
+<span class="channel-num">20</span>
+<a href="http://c.biancheng.net/view/8385.html">简单工厂模式</a>
+</dd>
+<dd>
+<span class="channel-num">21</span>
+<a href="http://c.biancheng.net/view/1348.html">工厂方法模式</a>
+</dd>
+<dd>
+<span class="channel-num">22</span>
+<a href="http://c.biancheng.net/view/1351.html">抽象工厂模式</a>
+</dd>
+<dd>
+<span class="channel-num">23</span>
+<a href="http://c.biancheng.net/view/1354.html">建造者模式</a>
+</dd>
+<dd>
+<span class="channel-num">24</span>
+<a href="http://c.biancheng.net/view/1408.html">创建型模式应用实验</a>
+</dd>
+<dd>
+<span class="channel-num">25</span>
+<a href="http://c.biancheng.net/view/1357.html">结构型模式概述</a>
+</dd>
+<dd>
+<span class="channel-num">26</span>
+<a href="http://c.biancheng.net/view/1359.html">代理模式</a>
+</dd>
+<dd class="active">
+<span class="channel-num">27</span>
+<a href="http://c.biancheng.net/view/1361.html">适配器模式</a>
+</dd>
+<dd>
+<span class="channel-num">28</span>
+<a href="http://c.biancheng.net/view/1364.html">桥接模式</a>
+</dd>
+<dd>
+<span class="channel-num">29</span>
+<a href="http://c.biancheng.net/view/1366.html">装饰器模式</a>
+</dd>
+<dd>
+<span class="channel-num">30</span>
+<a href="http://c.biancheng.net/view/1369.html">外观模式</a>
+</dd>
+<dd>
+<span class="channel-num">31</span>
+<a href="http://c.biancheng.net/view/1371.html">享元模式</a>
+</dd>
+<dd>
+<span class="channel-num">32</span>
+<a href="http://c.biancheng.net/view/1373.html">组合模式</a>
+</dd>
+<dd>
+<span class="channel-num">33</span>
+<a href="http://c.biancheng.net/view/1409.html">结构型模式应用实验</a>
+</dd>
+<dd>
+<span class="channel-num">34</span>
+<a href="http://c.biancheng.net/view/1374.html">行为型模式概述</a>
+</dd>
+<dd>
+<span class="channel-num">35</span>
+<a href="http://c.biancheng.net/view/1376.html">模板方法模式</a>
+</dd>
+<dd>
+<span class="channel-num">36</span>
+<a href="http://c.biancheng.net/view/1378.html">策略模式</a>
+</dd>
+<dd>
+<span class="channel-num">37</span>
+<a href="http://c.biancheng.net/view/1380.html">命令模式</a>
+</dd>
+<dd>
+<span class="channel-num">38</span>
+<a href="http://c.biancheng.net/view/1383.html">责任链模式</a>
+</dd>
+<dd>
+<span class="channel-num">39</span>
+<a href="http://c.biancheng.net/view/1388.html">状态模式</a>
+</dd>
+<dd>
+<span class="channel-num">40</span>
+<a href="http://c.biancheng.net/view/1390.html">观察者模式</a>
+</dd>
+<dd>
+<span class="channel-num">41</span>
+<a href="http://c.biancheng.net/view/1393.html">中介者模式</a>
+</dd>
+<dd>
+<span class="channel-num">42</span>
+<a href="http://c.biancheng.net/view/1395.html">迭代器模式</a>
+</dd>
+<dd>
+<span class="channel-num">43</span>
+<a href="http://c.biancheng.net/view/1397.html">访问者模式</a>
+</dd>
+<dd>
+<span class="channel-num">44</span>
+<a href="http://c.biancheng.net/view/1400.html">备忘录模式</a>
+</dd>
+<dd>
+<span class="channel-num">45</span>
+<a href="http://c.biancheng.net/view/1402.html">解释器模式</a>
+</dd>
+<dd>
+<span class="channel-num">46</span>
+<a href="http://c.biancheng.net/view/1410.html">行为型模式应用实验</a>
+</dd>
+<dd>
+<span class="channel-num">47</span>
+<a href="http://c.biancheng.net/view/8462.html">一句话归纳设计模式</a>
+</dd>
+</div>
+</div>
+<div id="article-wrap">
+<div id="article">
+<div class="arc-info">
+<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/design_pattern/">设计模式</a></span>
+<span class="read-num">阅读：175,267</span>
+</div>
+<div id="ad-position-bottom"></div>
+<h1>适配器模式（Adapter模式）详解</h1>
+<div class="pre-next-page clearfix">
+<span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/1359.html">代理模式</a></span>
+<span class="next right"><a href="http://c.biancheng.net/view/1364.html">桥接模式</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+</div>
+<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="java-1v1q2a"><a href="http://c.biancheng.net/view/7552.html" target="_blank" style="color: #D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+<div id="arc-body">在现实生活中，经常出现两个对象因接口不兼容而不能在一起工作的实例，这时需要第三者进行适配。例如，讲中文的人同讲英文的人对话时需要一个翻译，用直流电的笔记本电脑接交流电源时需要一个电源适配器，用计算机访问照相机的 SD 内存卡时需要一个读卡器等。<br>
+<br>
+在软件设计中也可能出现：需要开发的具有某种业务功能的组件在现有的组件库中已经存在，但它们与当前系统的接口规范不兼容，如果重新开发这些组件成本又很高，这时用适配器模式能很好地解决这些问题。<br>
+<h2>
+模式的定义与特点</h2>
+<span style="color:#006400;">适配器模式（Adapter）</span>的定义如下：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。<span style="color:#b22222;">适配器模式分为类结构型模式和对象结构型模式两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。</span><br>
+<br>
+该模式的主要优点如下。
+<ul>
+<li>
+客户端通过适配器可以透明地调用目标接口。</li>
+<li>
+复用了现存的类，程序员不需要修改原有代码而重用现有的适配者类。</li>
+<li>
+将目标类和适配者类解耦，解决了目标类和适配者类接口不一致的问题。</li>
+<li>
+在很多业务场景中符合开闭原则。</li>
+</ul>
+<br>
+其缺点是：
+<ul>
+<li>
+适配器编写过程需要结合业务场景全面考虑，可能会增加系统的复杂性。</li>
+<li>
+增加代码阅读难度，降低代码可读性，过多使用适配器会使系统代码变得凌乱。</li>
+</ul>
+<h2>
+模式的结构与实现</h2>
+类适配器模式可采用多重继承方式实现，如 <a href="http://c.biancheng.net/cplus/" target="_blank">C++</a> 可定义一个适配器类来同时继承当前系统的业务接口和现有组件库中已经存在的组件接口；<a href="http://c.biancheng.net/java/" target="_blank">Java</a> 不支持多继承，但可以定义一个适配器类来实现当前系统的业务接口，同时又继承现有组件库中已经存在的组件。<br>
+<br>
+对象适配器模式可釆用将现有组件库中已经实现的组件引入适配器类中，该类同时实现当前系统的业务接口。现在来介绍它们的基本结构。<br>
+<h4>
+1. 模式的结构</h4>
+适配器模式（Adapter）包含以下主要角色。
+<ol>
+<li>
+目标（Target）接口：当前系统业务所期待的接口，它可以是抽象类或接口。</li>
+<li>
+适配者（Adaptee）类：它是被访问和适配的现存组件库中的组件接口。</li>
+<li>
+适配器（Adapter）类：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。</li>
+</ol>
+<br>
+类适配器模式的结构图如图 1 所示。<br>
+<br>
+<div style="text-align: center;">
+<img alt="类适配器模式的结构图" src="./适配器模式（Adapter模式）详解_files/3-1Q1151045351c.gif"><br>
+图1 类适配器模式的结构图</div>
+<br>
+对象适配器模式的结构图如图 2 所示。<br>
+<br>
+<div style="text-align: center;">
+<img alt="对象适配器模式的结构图" src="./适配器模式（Adapter模式）详解_files/3-1Q1151046105A.gif"><br>
+图2 对象适配器模式的结构图</div>
+<h4>
+2. 模式的实现</h4>
+(1) 类适配器模式的代码如下。
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/1361.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/1361.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/1361.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">package</span><span class="sh_normal"> </span>adapter<span class="sh_symbol">;</span></li><li><span class="sh_comment">//目标接口</span></li><li>interface Target</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">request</span><span class="sh_symbol">();</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//适配者接口</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">Adaptee</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">specificRequest</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span>       </li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"适配者中的业务代码被调用！"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//类适配器类</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ClassAdapter</span> extends Adaptee implements Target</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">request</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        <span class="sh_function">specificRequest</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//客户端代码</span></li><li><span class="sh_keyword">public</span> <span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ClassAdapterTest</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_keyword">static</span> <span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">(</span>String<span class="sh_symbol">[]</span> args<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"类适配器模式测试："</span><span class="sh_symbol">);</span></li><li>        <span class="sh_usertype">Target</span><span class="sh_normal"> </span>target <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">ClassAdapter</span><span class="sh_symbol">();</span></li><li>        target<span class="sh_symbol">.</span><span class="sh_function">request</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">package adapter;
+//目标接口
+interface Target
+{
+    public void request();
+}
+//适配者接口
+class Adaptee
+{
+    public void specificRequest()
+    {       
+        System.out.println("适配者中的业务代码被调用！");
+    }
+}
+//类适配器类
+class ClassAdapter extends Adaptee implements Target
+{
+    public void request()
+    {
+        specificRequest();
+    }
+}
+//客户端代码
+public class ClassAdapterTest
+{
+    public static void main(String[] args)
+    {
+        System.out.println("类适配器模式测试：");
+        Target target = new ClassAdapter();
+        target.request();
+    }
+}</pre></div></div>
+<br>
+程序的运行结果如下：
+<pre class="info-box">类适配器模式测试：
+适配者中的业务代码被调用！</pre>
+<br>
+(2)对象适配器模式的代码如下。
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/1361.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/1361.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/1361.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">package</span><span class="sh_normal"> </span>adapter<span class="sh_symbol">;</span></li><li><span class="sh_comment">//对象适配器类</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ObjectAdapter</span> implements Target</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">private</span> <span class="sh_usertype">Adaptee</span><span class="sh_normal"> </span>adaptee<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_function">ObjectAdapter</span><span class="sh_symbol">(</span><span class="sh_usertype">Adaptee</span><span class="sh_normal"> </span>adaptee<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">this</span><span class="sh_symbol">.</span>adaptee<span class="sh_symbol">=</span>adaptee<span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">request</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        adaptee<span class="sh_symbol">.</span><span class="sh_function">specificRequest</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//客户端代码</span></li><li><span class="sh_keyword">public</span> <span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ObjectAdapterTest</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_keyword">static</span> <span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">(</span>String<span class="sh_symbol">[]</span> args<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"对象适配器模式测试："</span><span class="sh_symbol">);</span></li><li>        <span class="sh_usertype">Adaptee</span><span class="sh_normal"> </span>adaptee <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">Adaptee</span><span class="sh_symbol">();</span></li><li>        <span class="sh_usertype">Target</span><span class="sh_normal"> </span>target <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">ObjectAdapter</span><span class="sh_symbol">(</span>adaptee<span class="sh_symbol">);</span></li><li>        target<span class="sh_symbol">.</span><span class="sh_function">request</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">package adapter;
+//对象适配器类
+class ObjectAdapter implements Target
+{
+    private Adaptee adaptee;
+    public ObjectAdapter(Adaptee adaptee)
+    {
+        this.adaptee=adaptee;
+    }
+    public void request()
+    {
+        adaptee.specificRequest();
+    }
+}
+//客户端代码
+public class ObjectAdapterTest
+{
+    public static void main(String[] args)
+    {
+        System.out.println("对象适配器模式测试：");
+        Adaptee adaptee = new Adaptee();
+        Target target = new ObjectAdapter(adaptee);
+        target.request();
+    }
+}</pre></div></div>
+<br>
+说明：对象适配器模式中的“目标接口”和“适配者类”的代码同类适配器模式一样，只要修改适配器类和客户端的代码即可。<br>
+<br>
+程序的运行结果如下：
+<pre class="info-box">对象适配器模式测试：
+适配者中的业务代码被调用！</pre>
+<h2>
+模式的应用实例</h2>
+【例1】用适配器模式（Adapter）模拟新能源汽车的发动机。<br>
+<br>
+分析：新能源汽车的发动机有电能发动机（Electric Motor）和光能发动机（Optical Motor）等，各种发动机的驱动方法不同，例如，电能发动机的驱动方法 electricDrive() 是用电能驱动，而光能发动机的驱动方法 opticalDrive() 是用光能驱动，它们是适配器模式中被访问的适配者。<br>
+<br>
+客户端希望用统一的发动机驱动方法 drive() 访问这两种发动机，所以必须定义一个统一的目标接口 Motor，然后再定义电能适配器（Electric Adapter）和光能适配器（Optical Adapter）去适配这两种发动机。<br>
+<br>
+我们把客户端想访问的新能源发动机的适配器的名称放在 XML 配置文件中（<a href="http://c.biancheng.net/uploads/soft/181113/3-1Q115110A5.zip">点此下载 XML 文件</a>），客户端可以通过对象生成器类 ReadXML 去读取。这样，客户端就可以通过 Motor 接口随便使用任意一种新能源发动机去驱动汽车，图 3 所示是其结构图。<br>
+<br>
+<div style="text-align: center;">
+<img alt="发动机适配器的结构图" src="./适配器模式（Adapter模式）详解_files/3-1Q115104I22F.gif"><br>
+图3 发动机适配器的结构图</div>
+<br>
+程序代码如下：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/1361.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/1361.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/1361.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">package</span><span class="sh_normal"> </span>adapter<span class="sh_symbol">;</span></li><li><span class="sh_comment">//目标：发动机</span></li><li>interface Motor</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">drive</span><span class="sh_symbol">();</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//适配者1：电能发动机</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ElectricMotor</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">electricDrive</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"电能发动机驱动汽车！"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//适配者2：光能发动机</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">OpticalMotor</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">opticalDrive</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"光能发动机驱动汽车！"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//电能适配器</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ElectricAdapter</span> implements Motor</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">private</span> <span class="sh_usertype">ElectricMotor</span><span class="sh_normal"> </span>emotor<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_function">ElectricAdapter</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        emotor<span class="sh_symbol">=</span><span class="sh_keyword">new</span> <span class="sh_function">ElectricMotor</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">drive</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        emotor<span class="sh_symbol">.</span><span class="sh_function">electricDrive</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//光能适配器</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">OpticalAdapter</span> implements Motor</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">private</span> <span class="sh_usertype">OpticalMotor</span><span class="sh_normal"> </span>omotor<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_function">OpticalAdapter</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        omotor<span class="sh_symbol">=</span><span class="sh_keyword">new</span> <span class="sh_function">OpticalMotor</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">drive</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        omotor<span class="sh_symbol">.</span><span class="sh_function">opticalDrive</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//客户端代码</span></li><li><span class="sh_keyword">public</span> <span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">MotorAdapterTest</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_keyword">static</span> <span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">(</span>String<span class="sh_symbol">[]</span> args<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"适配器模式测试："</span><span class="sh_symbol">);</span></li><li>        <span class="sh_usertype">Motor</span><span class="sh_normal"> </span>motor<span class="sh_symbol">=(</span>Motor<span class="sh_symbol">)</span>ReadXML<span class="sh_symbol">.</span><span class="sh_function">getObject</span><span class="sh_symbol">();</span></li><li>        motor<span class="sh_symbol">.</span><span class="sh_function">drive</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">package adapter;
+//目标：发动机
+interface Motor
+{
+    public void drive();
+}
+//适配者1：电能发动机
+class ElectricMotor
+{
+    public void electricDrive()
+    {
+        System.out.println("电能发动机驱动汽车！");
+    }
+}
+//适配者2：光能发动机
+class OpticalMotor
+{
+    public void opticalDrive()
+    {
+        System.out.println("光能发动机驱动汽车！");
+    }
+}
+//电能适配器
+class ElectricAdapter implements Motor
+{
+    private ElectricMotor emotor;
+    public ElectricAdapter()
+    {
+        emotor=new ElectricMotor();
+    }
+    public void drive()
+    {
+        emotor.electricDrive();
+    }
+}
+//光能适配器
+class OpticalAdapter implements Motor
+{
+    private OpticalMotor omotor;
+    public OpticalAdapter()
+    {
+        omotor=new OpticalMotor();
+    }
+    public void drive()
+    {
+        omotor.opticalDrive();
+    }
+}
+//客户端代码
+public class MotorAdapterTest
+{
+    public static void main(String[] args)
+    {
+        System.out.println("适配器模式测试：");
+        Motor motor=(Motor)ReadXML.getObject();
+        motor.drive();
+    }
+}</pre></div></div>
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/1361.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/1361.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/1361.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">package</span><span class="sh_normal"> </span>adapter<span class="sh_symbol">;</span></li><li><span class="sh_usertype">import</span><span class="sh_normal"> </span>javax<span class="sh_symbol">.</span>xml<span class="sh_symbol">.</span>parsers<span class="sh_symbol">.*;</span></li><li><span class="sh_usertype">import</span><span class="sh_normal"> </span>org<span class="sh_symbol">.</span>w3c<span class="sh_symbol">.</span>dom<span class="sh_symbol">.*;</span></li><li><span class="sh_usertype">import</span><span class="sh_normal"> </span>java<span class="sh_symbol">.</span>io<span class="sh_symbol">.*;</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">ReadXML</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_keyword">static</span> <span class="sh_usertype">Object</span><span class="sh_normal"> </span><span class="sh_function">getObject</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">try</span></li><li>        <span class="sh_cbracket">{</span></li><li>            <span class="sh_usertype">DocumentBuilderFactory</span><span class="sh_normal"> </span>dFactory<span class="sh_symbol">=</span>DocumentBuilderFactory<span class="sh_symbol">.</span><span class="sh_function">newInstance</span><span class="sh_symbol">();</span></li><li>            <span class="sh_usertype">DocumentBuilder</span><span class="sh_normal"> </span>builder<span class="sh_symbol">=</span>dFactory<span class="sh_symbol">.</span><span class="sh_function">newDocumentBuilder</span><span class="sh_symbol">();</span></li><li>            <span class="sh_usertype">Document</span><span class="sh_normal"> </span>doc<span class="sh_symbol">;</span>                           </li><li>            doc<span class="sh_symbol">=</span>builder<span class="sh_symbol">.</span><span class="sh_function">parse</span><span class="sh_symbol">(</span><span class="sh_keyword">new</span> <span class="sh_function">File</span><span class="sh_symbol">(</span><span class="sh_string">"src/adapter/config.xml"</span><span class="sh_symbol">));</span></li><li>            <span class="sh_usertype">NodeList</span><span class="sh_normal"> </span>nl<span class="sh_symbol">=</span>doc<span class="sh_symbol">.</span><span class="sh_function">getElementsByTagName</span><span class="sh_symbol">(</span><span class="sh_string">"className"</span><span class="sh_symbol">);</span></li><li>            <span class="sh_usertype">Node</span><span class="sh_normal"> </span>classNode<span class="sh_symbol">=</span>nl<span class="sh_symbol">.</span><span class="sh_function">item</span><span class="sh_symbol">(</span><span class="sh_number">0</span><span class="sh_symbol">).</span><span class="sh_function">getFirstChild</span><span class="sh_symbol">();</span></li><li>            <span class="sh_usertype">String</span><span class="sh_normal"> </span>cName<span class="sh_symbol">=</span><span class="sh_string">"adapter."</span><span class="sh_symbol">+</span>classNode<span class="sh_symbol">.</span><span class="sh_function">getNodeValue</span><span class="sh_symbol">();</span></li><li>            <span class="sh_usertype">Class&lt;?&gt;</span><span class="sh_normal"> </span>c<span class="sh_symbol">=</span>Class<span class="sh_symbol">.</span><span class="sh_function">forName</span><span class="sh_symbol">(</span>cName<span class="sh_symbol">);</span></li><li>              <span class="sh_usertype">Object</span><span class="sh_normal"> </span>obj<span class="sh_symbol">=</span>c<span class="sh_symbol">.</span><span class="sh_function">newInstance</span><span class="sh_symbol">();</span></li><li>            <span class="sh_keyword">return</span> obj<span class="sh_symbol">;</span></li><li>         <span class="sh_cbracket">}</span>  </li><li>         <span class="sh_keyword">catch</span><span class="sh_symbol">(</span><span class="sh_usertype">Exception</span><span class="sh_normal"> </span>e<span class="sh_symbol">)</span></li><li>         <span class="sh_cbracket">{</span></li><li>                   e<span class="sh_symbol">.</span><span class="sh_function">printStackTrace</span><span class="sh_symbol">();</span></li><li>                   <span class="sh_keyword">return</span> null<span class="sh_symbol">;</span></li><li>         <span class="sh_cbracket">}</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">package adapter;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+import java.io.*;
+class ReadXML
+{
+    public static Object getObject()
+    {
+        try
+        {
+            DocumentBuilderFactory dFactory=DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder=dFactory.newDocumentBuilder();
+            Document doc;                           
+            doc=builder.parse(new File("src/adapter/config.xml"));
+            NodeList nl=doc.getElementsByTagName("className");
+            Node classNode=nl.item(0).getFirstChild();
+            String cName="adapter."+classNode.getNodeValue();
+            Class&lt;?&gt; c=Class.forName(cName);
+              Object obj=c.newInstance();
+            return obj;
+         }  
+         catch(Exception e)
+         {
+                   e.printStackTrace();
+                   return null;
+         }
+    }
+}</pre></div></div>
+<br>
+程序的运行结果如下：
+<pre class="info-box">适配器模式测试：
+电能发动机驱动汽车！</pre>
+<br>
+注意：如果将配置文件中的 ElectricAdapter 改为 OpticalAdapter，则运行结果如下：
+<pre class="info-box">适配器模式测试：
+光能发动机驱动汽车！</pre>
+<h2>
+模式的应用场景</h2>
+适配器模式（Adapter）通常适用于以下场景。
+<ul>
+<li>
+以前开发的系统存在满足新系统功能需求的类，但其接口同新系统的接口不一致。</li>
+<li>
+使用第三方提供的组件，但组件接口定义和自己要求的接口定义不同。</li>
+</ul>
+<h2>
+模式的扩展</h2>
+适配器模式（Adapter）可扩展为双向适配器模式，双向适配器类既可以把适配者接口转换成目标接口，也可以把目标接口转换成适配者接口，其结构图如图 4 所示。<br>
+<br>
+<div style="text-align: center;">
+<img alt="双向适配器模式的结构图" src="./适配器模式（Adapter模式）详解_files/3-1Q115104Q1604.gif"><br>
+图4 双向适配器模式的结构图</div>
+<br>
+程序代码如下：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: block;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/1361.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/1361.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/1361.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">package</span><span class="sh_normal"> </span>adapter<span class="sh_symbol">;</span></li><li><span class="sh_comment">//目标接口</span></li><li>interface TwoWayTarget</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">request</span><span class="sh_symbol">();</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//适配者接口</span></li><li>interface TwoWayAdaptee</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">specificRequest</span><span class="sh_symbol">();</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//目标实现</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">TargetRealize</span> implements TwoWayTarget</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">request</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span>       </li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"目标代码被调用！"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//适配者实现</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">AdapteeRealize</span> implements TwoWayAdaptee</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">specificRequest</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span>       </li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"适配者代码被调用！"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//双向适配器</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">TwoWayAdapter</span>  <span class="sh_usertype">implements</span><span class="sh_normal"> </span>TwoWayTarget<span class="sh_symbol">,</span>TwoWayAdaptee</li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">private</span> <span class="sh_usertype">TwoWayTarget</span><span class="sh_normal"> </span>target<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">private</span> <span class="sh_usertype">TwoWayAdaptee</span><span class="sh_normal"> </span>adaptee<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_function">TwoWayAdapter</span><span class="sh_symbol">(</span><span class="sh_usertype">TwoWayTarget</span><span class="sh_normal"> </span>target<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">this</span><span class="sh_symbol">.</span>target<span class="sh_symbol">=</span>target<span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_function">TwoWayAdapter</span><span class="sh_symbol">(</span><span class="sh_usertype">TwoWayAdaptee</span><span class="sh_normal"> </span>adaptee<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">this</span><span class="sh_symbol">.</span>adaptee<span class="sh_symbol">=</span>adaptee<span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">request</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span></li><li>        adaptee<span class="sh_symbol">.</span><span class="sh_function">specificRequest</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_type">void</span> <span class="sh_function">specificRequest</span><span class="sh_symbol">()</span></li><li>    <span class="sh_cbracket">{</span>       </li><li>        target<span class="sh_symbol">.</span><span class="sh_function">request</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_comment">//客户端代码</span></li><li><span class="sh_keyword">public</span> <span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">TwoWayAdapterTest</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">public</span> <span class="sh_keyword">static</span> <span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">(</span>String<span class="sh_symbol">[]</span> args<span class="sh_symbol">)</span></li><li>    <span class="sh_cbracket">{</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"目标通过双向适配器访问适配者："</span><span class="sh_symbol">);</span></li><li>        <span class="sh_usertype">TwoWayAdaptee</span><span class="sh_normal"> </span>adaptee<span class="sh_symbol">=</span><span class="sh_keyword">new</span> <span class="sh_function">AdapteeRealize</span><span class="sh_symbol">();</span></li><li>        <span class="sh_usertype">TwoWayTarget</span><span class="sh_normal"> </span>target<span class="sh_symbol">=</span><span class="sh_keyword">new</span> <span class="sh_function">TwoWayAdapter</span><span class="sh_symbol">(</span>adaptee<span class="sh_symbol">);</span></li><li>        target<span class="sh_symbol">.</span><span class="sh_function">request</span><span class="sh_symbol">();</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"-------------------"</span><span class="sh_symbol">);</span></li><li>        System<span class="sh_symbol">.</span>out<span class="sh_symbol">.</span><span class="sh_function">println</span><span class="sh_symbol">(</span><span class="sh_string">"适配者通过双向适配器访问目标："</span><span class="sh_symbol">);</span></li><li>        target<span class="sh_symbol">=</span><span class="sh_keyword">new</span> <span class="sh_function">TargetRealize</span><span class="sh_symbol">();</span></li><li>        adaptee<span class="sh_symbol">=</span><span class="sh_keyword">new</span> <span class="sh_function">TwoWayAdapter</span><span class="sh_symbol">(</span>target<span class="sh_symbol">);</span></li><li>        adaptee<span class="sh_symbol">.</span><span class="sh_function">specificRequest</span><span class="sh_symbol">();</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">package adapter;
+//目标接口
+interface TwoWayTarget
+{
+    public void request();
+}
+//适配者接口
+interface TwoWayAdaptee
+{
+    public void specificRequest();
+}
+//目标实现
+class TargetRealize implements TwoWayTarget
+{
+    public void request()
+    {       
+        System.out.println("目标代码被调用！");
+    }
+}
+//适配者实现
+class AdapteeRealize implements TwoWayAdaptee
+{
+    public void specificRequest()
+    {       
+        System.out.println("适配者代码被调用！");
+    }
+}
+//双向适配器
+class TwoWayAdapter  implements TwoWayTarget,TwoWayAdaptee
+{
+    private TwoWayTarget target;
+    private TwoWayAdaptee adaptee;
+    public TwoWayAdapter(TwoWayTarget target)
+    {
+        this.target=target;
+    }
+    public TwoWayAdapter(TwoWayAdaptee adaptee)
+    {
+        this.adaptee=adaptee;
+    }
+    public void request()
+    {
+        adaptee.specificRequest();
+    }
+    public void specificRequest()
+    {       
+        target.request();
+    }
+}
+//客户端代码
+public class TwoWayAdapterTest
+{
+    public static void main(String[] args)
+    {
+        System.out.println("目标通过双向适配器访问适配者：");
+        TwoWayAdaptee adaptee=new AdapteeRealize();
+        TwoWayTarget target=new TwoWayAdapter(adaptee);
+        target.request();
+        System.out.println("-------------------");
+        System.out.println("适配者通过双向适配器访问目标：");
+        target=new TargetRealize();
+        adaptee=new TwoWayAdapter(target);
+        adaptee.specificRequest();
+    }
+}</pre></div></div>
+<br>
+程序的运行结果如下：
+<pre class="info-box">目标通过双向适配器访问适配者：
+适配者代码被调用！
+-------------------
+适配者通过双向适配器访问目标：
+目标代码被调用！</pre>
+<h2>
+进阶阅读</h2>
+如果您想了解适配器模式在实际中的应用，可猛击阅读以下文章。
+<ul>
+<li>
+<a href="http://c.biancheng.net/view/vip_8439.html" target="_blank">《使用类适配器重构第三方登录自由适配》</a></li>
+<li>
+<a href="http://c.biancheng.net/view/vip_8447.html" target="_blank">《适配器模式在Spring源码中的应用》</a></li>
+</ul>
+</div>
+<div id="arc-append">
+<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+<p style="margin-top:12px; text-align:center;">
+<img width="180" src="./适配器模式（Adapter模式）详解_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+<span class="col-green">微信扫描二维码关注公众号</span>
+</p>
+</div>
+<div class="pre-next-page clearfix">
+<span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/1359.html">代理模式</a></span>
+<span class="next right"><a href="http://c.biancheng.net/view/1364.html">桥接模式</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+</div>
+<div id="ad-arc-bottom"></div>
+<div id="nice-arcs" class="box-bottom">
+<h4>优秀文章</h4>
+<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/892.html" title="Java Float类">Java Float类</a></li>
+<li><a href="http://c.biancheng.net/view/920.html" title="Linux LV逻辑卷（创建、查看、调整大小及删除）详解">Linux LV逻辑卷（创建、查看、调整大小及删除）详解</a></li>
+<li><a href="http://c.biancheng.net/view/2749.html" title="Unity 3D刚体（Rigidbody）">Unity 3D刚体（Rigidbody）</a></li>
+<li><a href="http://c.biancheng.net/view/4586.html" title="互联网系统应用架构基础分析">互联网系统应用架构基础分析</a></li>
+<li><a href="http://c.biancheng.net/view/5604.html" title="JS字符串替换">JS字符串替换</a></li>
+<li><a href="http://c.biancheng.net/view/vip_6070.html" title="如何使用Python继承机制（子类化内置类型）">如何使用Python继承机制（子类化内置类型）</a></li>
+<li><a href="http://c.biancheng.net/view/7846.html" title="jQuery伪类选择器是什么">jQuery伪类选择器是什么</a></li>
+<li><a href="http://c.biancheng.net/view/vip_8514.html" title="如何用GDB调试多线程程序？">如何用GDB调试多线程程序？</a></li>
+<li><a href="http://c.biancheng.net/python_spider/crawl-photo.html" title="Python爬虫抓取网络照片">Python爬虫抓取网络照片</a></li>
+<li><a href="http://c.biancheng.net/view/9356.html" title="JS Array（数组）对象">JS Array（数组）对象</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 1361;
+window.arcId = "c972ewh0J3UTJvdrDAuy3DPovKg41rLSniOKI1mjPpk8mbWcr0+iAfwL7xI";
+window.typeidChain = "122";
+</script>
+<div id="footer" class="clearfix">
+<div class="info left">
+<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+<p>
+<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+</p>
+<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+</div>
+<img class="right" src="./适配器模式（Adapter模式）详解_files/logo_bottom.gif" alt="底部Logo">
+<span id="return-top"><b>↑</b></span>
+</div>
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.73";
+</script>
+<script src="./适配器模式（Adapter模式）详解_files/jquery1.12.4.min.js"></script>
+<script src="./适配器模式（Adapter模式）详解_files/common.js"></script>
+<span style="display:none;"><script src="./适配器模式（Adapter模式）详解_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>
