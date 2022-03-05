@@ -1,4 +1,4 @@
-package structure.bridge;
+package structure;
 
 /**
  * 外观模式
