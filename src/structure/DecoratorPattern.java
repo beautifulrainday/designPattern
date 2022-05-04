@@ -12,10 +12,16 @@ public class DecoratorPattern {
 
     public static void main(String[] args) {
         OriginObj originObj = new OriginObj();
-        originObj.function();
-        //
+        originObj.cookMeat();
+        System.out.println("==========");
+        //加上装饰1
         ConcreteDecorator concreteDecorator = new ConcreteDecorator(originObj);
         concreteDecorator.invoke();
+        System.out.println("==========");
+        //加上装饰2
+        ConcreteDecorator2 concreteDecorator2 = new ConcreteDecorator2(originObj);
+        concreteDecorator2.invoke();
+        System.out.println("==========");
     }
 }
 
@@ -25,6 +31,9 @@ public class DecoratorPattern {
 interface OriginObjInterface {
 
     void function();
+
+    //比如：我要做一道菜，红烧肉
+    void cookMeat();
 }
 
 /**
@@ -36,9 +45,12 @@ class OriginObj implements OriginObjInterface {
     public void function() {
         System.out.println("do some thing");
     }
-}
 
-class Decorator2 extends OriginObj{
+    @Override
+    public void cookMeat() {
+        System.out.println("cook meat");
+    }
+
 
 }
 
@@ -60,10 +72,15 @@ class Decorator implements OriginObjInterface {
     public void function() {
         originObj.function();
     }
+
+    @Override
+    public void cookMeat() {
+        originObj.cookMeat();
+    }
 }
 
 /**
- * 具体被修饰类
+ * 具体被修饰类-1
  */
 class ConcreteDecorator extends Decorator {
 
@@ -72,15 +89,51 @@ class ConcreteDecorator extends Decorator {
     }
 
     public void invoke() {
-        super.function();
-        decoratorFuc();
+        //super.function();
+        //decoratorFuc();
+        super.cookMeat();
+        addSalt();
     }
 
     /**
      * 装饰的内容
      */
     private void decoratorFuc() {
-        System.out.println("decorator some thing");
+        System.out.println("decorator1 for do some thing");
+    }
+
+    //加点盐
+    private void addSalt() {
+        System.out.println("add some salt");
+    }
+}
+
+/**
+ * 具体被修饰类-2
+ */
+class ConcreteDecorator2 extends Decorator {
+
+    public ConcreteDecorator2(OriginObj originObj) {
+        super(originObj);
+    }
+
+    public void invoke() {
+        //super.function();
+        //decoratorFuc();
+        super.cookMeat();
+        addOil();
+    }
+
+    /**
+     * 装饰的内容
+     */
+    private void decoratorFuc() {
+        System.out.println("decorator2 for do some thing");
+    }
+
+    //加点油
+    private void addOil() {
+        System.out.println("add some oil");
     }
 }
 
